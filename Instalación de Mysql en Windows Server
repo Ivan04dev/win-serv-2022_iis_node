@@ -1,0 +1,8 @@
+- Descargar desde
+https://dev.mysql.com/downloads/
+
+- Agregar al path
+C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+- Confirmar la instalación desde cmd
+mysql -u root -p
