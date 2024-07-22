@@ -1,0 +1,3 @@
+Dashboard > Manage > Add Roles and Features
+
+Next > Select IIS Next > ... Install

@@ -1,0 +1,72 @@
+Descargar e instalar Node JS desde 
+
+C:\inetpub\wwwroot\
+
+*Crear un proyecto estático en C:\inetpub\wwwroot\\sites\test
+
+--------------------------------------------------------------------
+
+Crear un proyecto en Node y probarlo de manera local
+
+-Dentro de la carpeta del proyecto, abrir el cmd y ejecutar npm init -y
+-En la raíz, crear el archivo index.js
+-En el index colocar lo siguiente:
+
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+    res.json({message: "Welcome"});
+})
+
+app.listen(4000);
+
+En el navegador colocar localhost:4000
+
+--------------------------------------------------------------
+
+-Instalar express con npm i express
+
+Descargar e instalar los módulos de IIS
+
+Módulos
+
+-IIS NODE
+https://github.com/Azure/iisnode/releases/tag/v0.2.26
+
+-URL REWRITE
+https://www.iis.net/downloads/microsoft/url-rewrite
+
+-Application Request Routing
+https://www.iis.net/downloads/microsoft/application-request-routing
+
+Reiniciar el servidor después de la instalación
+
+Abrir IIS Manager y verificar que en Modules este iisnode
+
+Cambiar el puerto por 
+
+En Sites del IIS Manager agregar el nuevo sitio (api)
+
+En Feature Delegation > Handler Mappings cambiar a Read/Write
+
+Seleccionar api Handler Mappings > Add Module Mapping
+
+Request path: index.js
+Module: iisnode
+Executable(optional):
+Name: iisnode
+
+En automático se crea un archivo web.config es necesario agregar la siguiente regla:
+
+<rewrite>
+            <rules>
+                <rule name="ReqToServerjs">
+                    <match url=".*" />
+                    <action type="Rewrite" url="run.cjs" />
+                </rule>
+            </rules>
+        </rewrite>
+
+Crear un archivo en ríz llamado run.cjs
+
