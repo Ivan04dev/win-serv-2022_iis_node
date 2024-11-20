@@ -72,6 +72,15 @@ En automático se crea un archivo web.config es necesario agregar la siguiente r
             <rules>
                 <rule name="ReqToServerjs">
                     <match url=".*" />
+                    <action type="Rewrite" url="server.js" />
+                </rule>
+            </rules>
+        </rewrite>
+
+<rewrite>
+            <rules>
+                <rule name="ReqToServerjs">
+                    <match url=".*" />
                     <action type="Rewrite" url="run.cjs" />
                 </rule>
             </rules>
