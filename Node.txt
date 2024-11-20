@@ -27,6 +27,8 @@ En el navegador colocar localhost:4000
 - Desplegar node api en IIS | IIS Node
 https://www.youtube.com/watch?v=_7sc4b5spVY
 
+INSTALACIONES NECESARIAS
+
 -Instalar express con npm i express
 Descargar e instalar los módulos de IIS
 
@@ -46,6 +48,8 @@ Reiniciar el servidor después de la instalación
 Abrir IIS Manager y verificar que en Modules este iisnode
 
 ===============================================================================
+
+AGREGAR EL SITIO 
 
 1.- En Sites del IIS Manager > Add website
 
