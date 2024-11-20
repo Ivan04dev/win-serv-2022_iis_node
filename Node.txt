@@ -88,3 +88,4 @@ En automático se crea un archivo web.config es necesario agregar la siguiente r
 
 Crear un archivo en ríz llamado run.cjs
 
+import('./server.js');
