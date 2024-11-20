@@ -47,46 +47,42 @@ Abrir IIS Manager y verificar que en Modules este iisnode
 
 ===============================================================================
 
-NUEVO
+1.- En Sites del IIS Manager > Add website
 
-Ver el vídeo a partir del minuto 11:20
+    Site name:
+    Physical path:
+    Port:
 
-===============================================================================
+2.- Verificar que cuente con los permisos de lectura y escritura desde Feature Delegation > Handler Mappings cambiar a Read/Write
 
-Cambiar el puerto por 
+3.- Seleccionar Handler Mappings > Add Module Mapping
 
-En Sites del IIS Manager agregar el nuevo sitio (api)
+    Request path: index.js
+    Module: iisnode
+    Executable(optional):
+    Name: iisnode
 
-En Feature Delegation > Handler Mappings cambiar a Read/Write
+    *En automático se crea un archivo web.config después de handlers es necesario agregar la siguiente regla:
 
-Seleccionar api Handler Mappings > Add Module Mapping
+        <rewrite>
+                    <rules>
+                        <rule name="ReqToServerjs">
+                            <match url=".*" />
+                            <action type="Rewrite" url="server.js" />
+                        </rule>
+                    </rules>
+        </rewrite>
 
-Request path: index.js
-Module: iisnode
-Executable(optional):
-Name: iisnode
+**Con esta regla debe funcionar utilizando Common JS, para utilizar módulos es necesario cambiar a modulos en package.json y server.js además de modificar web.config
 
-En automático se crea un archivo web.config después de handlers es necesario agregar la siguiente regla:
-
-<rewrite>
-            <rules>
-                <rule name="ReqToServerjs">
-                    <match url=".*" />
-                    <action type="Rewrite" url="server.js" />
-                </rule>
-            </rules>
-</rewrite>
-
-Con esta regla debe funcionar utilizando Common JS, para utilizar módulos es necesario cambiar a modulos en package.json y server.js además de modificar web.config
-
-<rewrite>
-            <rules>
-                <rule name="ReqToServerjs">
-                    <match url=".*" />
-                    <action type="Rewrite" url="run.cjs" />
-                </rule>
-            </rules>
-</rewrite>
+    <rewrite>
+                <rules>
+                    <rule name="ReqToServerjs">
+                        <match url=".*" />
+                        <action type="Rewrite" url="run.cjs" />
+                    </rule>
+                </rules>
+    </rewrite>
 
 - Crear un archivo en ríz llamado run.cjs y agregar:
 
